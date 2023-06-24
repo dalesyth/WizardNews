@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
         <div class='news-item'>
           <p>
             <span class="news-position">${post.id}. ▲</span>
-            ${post.title}
+            <a href="/posts/${post.id}">${post.title}</a>
             <small>(by ${post.name})</small>
           </p>
           <small class="news-info">
@@ -46,6 +46,10 @@ app.get("/", (req, res) => {
 app.get("/posts/:id", (req, res) => {
   const id = req.params.id;
   const post = postBank.find(id);
+
+  if (!post.id) {
+    throw new Error("Not Found");
+  }
 
   res.send(`<!DOCTYPE html>
   <html>
@@ -72,6 +76,11 @@ app.get("/posts/:id", (req, res) => {
     </div>
   </body>
 </html>`);
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("404 - NOT FOUND");
 });
 
 const PORT = 1337;
