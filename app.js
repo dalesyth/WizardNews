@@ -7,8 +7,6 @@ app.use(morgan("dev"));
 
 app.use(express.static("public"));
 
-
-
 app.get("/", (req, res) => {
   const posts = postBank.list();
 
@@ -83,7 +81,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("404 - NOT FOUND");
 });
 
-const PORT = 1337;
+const { PORT = 1337 } = process.env;
 
 app.listen(PORT, () => {
   console.log(`App listening in port ${PORT}`);
