@@ -1,8 +1,6 @@
 const timeAgo = require("node-time-ago");
 
 const postList = (posts) => {
-
-
   const html = `<!DOCTYPE html>
   <html>
   <head>
@@ -33,9 +31,7 @@ const postList = (posts) => {
   </body>
 </html>`;
 
-return html;
+  return html;
 };
 
 module.exports = postList;
-
-
