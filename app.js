@@ -1,9 +1,13 @@
 const express = require("express");
-const app = express();
+const dotenv = require("dotenv");
 const morgan = require("morgan");
 const postBank = require("./postBank");
 const postList = require("./postList");
 const postDetails = require("./postDetails");
+
+dotenv.config();
+
+const app = express();
 
 app.use(morgan("dev"));
 
